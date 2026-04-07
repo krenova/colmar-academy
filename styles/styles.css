@@ -1,5 +1,11 @@
 
 
+/** ***********************************************************************  **/
+/** ***********************************************************************  **/
+/** Preamble **/
+/** ***********************************************************************  **/
+/** ***********************************************************************  **/
+
 /* Reset CSS */
 /* Universal selector (*) targets every element (regardless tag, class, ID) */
 
@@ -11,9 +17,11 @@
 
 :root {
     --white: #fff;
+    --bg-color-2: #d8d8d8;
     --main-font-color: #4a4a4a;
     --main-link-color: #484848;
     --secondary-link-color: #4a90e2;
+    --transition-speed: 0.3s;
 }
 
 
@@ -41,6 +49,17 @@ a {
 }
 
 
+/** Class to negate container's 60/40 effect on specific sections **/
+.section-max-width {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    grid-column: full-start / full-end;
+}
+
+
+
+
 
 /** ***********************************************************************  **/
 /** ***********************************************************************  **/
@@ -48,7 +67,7 @@ a {
 /** ***********************************************************************  **/
 /** ***********************************************************************  **/
 
-/* Set up the navbar for the desktop */
+/** -------------------- Navigation -------------------- **/
 nav {
     display: flex; /* what is display: flex managing? is it manage itself */
     grid-column: full-start / full-end; /* this property grid-column is maanged by: .conatiner */
@@ -56,7 +75,6 @@ nav {
     height: 4rem;
     background-color: var(--white);
 }
-
 
 nav ul {
     display:flex;
@@ -78,36 +96,11 @@ nav ul li a {
     align-items: center;
 }
 
-/* Set up logo styles */
-/* test: Martin's approach */
 nav a {
   display: flex;
   align-items: center;
+  transition-duration: var(--transition-speed);
 }
-
-/* nav a span{
-  text-decoration: none;
-  text-transform: uppercase;
-  align-content: center;
-} */
-
-/* test: approach 1 */
-/* nav a:first-child {
-    align-content: center;
-}
-
-nav img {
-    vertical-align: middle;
-    padding: 0.25rem;
-    height: 2rem;
-} */
-
-/* test: approach 2 */
-/* nav a {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-} */
 
 .logo {
     height: 2rem;
@@ -118,13 +111,6 @@ nav > a > span {
     text-transform: uppercase;
     line-height: 2rem;
 }
-
-
-/* !NOTE: the following will select nothing. do you know why? */
-/* nav > a > span:first-child {
-    font-weight: bold;
-    color: var(--main-link-color);
-} */
 
 nav > a > span:first-of-type {
     font-weight: bold;
@@ -139,15 +125,17 @@ nav > a > span:last-of-type {
 
 
 /* Set up navigation links' styles */
-/* TODO Create navigation link hover effects */
+nav a:hover {
+    color: var(--secondary-link-color);
+}
 
 
-/* Set up header area */
+/** -------------------- header area -------------------- **/
 header {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #d8d8d8;
+    background-color: var(--bg-color-2);
 }
 
 header > div {
@@ -184,13 +172,18 @@ header:nth-of-type(2) > div > a {
     text-align: center;
     /* border: 0.125rem solid #000;
     border-radius: 0.25rem; */
+    transition-duration: var(--transition-speed);
+    transition: transform var(--transition-speed);
 }
 
 /* hover effect for call to action link */
-/* TODO Create hover effect for the cta button */
+header:nth-of-type(2) > div > a:hover {
+    /* color: var(--main-font-color); */
+    background-color: #868686;
+    transform: scale(1.03);
+}
 
-
-/* Set up practice section */
+/** -------------------- Section: Practice -------------------- **/
 .practice {
     display: flex;
     flex-direction: column;
@@ -223,8 +216,7 @@ header:nth-of-type(2) > div > a {
 
 
 
-/** ---------------------- **/
-/** Section: Events **/
+/** -------------------- Section: Events -------------------- **/
 .events {
     display: grid;
     grid-template-rows: repeat(3, min-content);
@@ -243,15 +235,6 @@ header:nth-of-type(2) > div > a {
     max-width:100%;
     height:auto;
 }
-
-/* .events .events-text {
-    margin-left: 1rem;
-    height:100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    gap: 0.5rem;
-} */
 
 .events .events-text {
     margin-left: 1rem;
@@ -275,22 +258,125 @@ header:nth-of-type(2) > div > a {
     color:var(--secondary-link-color);  /* #3434c6 */
     display: block;
     padding-top: 0.5rem;
+    transition: var(--transition-speed);
 }
 
-.events .events-block:last-child {
-    background-color: #d8d8d8;
+/* targeting 3rd child instead of last child so that .events .events-block can be reused in thesis section */
+.events .events-block:nth-child(3) {
+    background-color: var(--bg-color-2);
+}
+
+.events .events-text a:hover {
+    color: #868686;
 }
 
 
 
-/** ---------------------- **/
-/** Section: Laerning **/
+/** -------------------- Section: Learning -------------------- **/
 
-/** ---------------------- **/
-/** Section: Thesis **/
+#learning {
+    background-color: var(--bg-color-2);
+}
 
-/** ---------------------- **/
-/** Section: Footer **/
+#learning h1 {
+    display: block;
+    padding: 2rem 4rem 0;
+    display: flex;
+    justify-content: center;
+}
+
+#learning > .learning-cards-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, auto);
+    padding: 2rem 4rem;
+    gap: 2rem;
+}
+
+#learning .learning-cards-container .learning-card {
+    background-color: var(--white);
+    display: wrap;
+    flex-direction:column
+}
+
+#learning .learning-card {
+    background-color: var(--white);
+}
+
+#learning .learning-card img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+#learning .learning-card h3 {
+    font-size: large;
+    padding: 1rem 1rem 0;
+}
+
+#learning .learning-cards-container .learning-card h4 {
+    font-size:small;
+    font-weight: lighter;
+    padding: 0.5rem 1rem;
+}
+
+#learning > .learning-cards-container > .learning-card > p {
+    font-size: small;
+    font-weight: lighter;
+    display: block;
+    padding: 0 1rem 1.5rem;
+}
+
+
+/** -------------------- Section: Thesis -------------------- **/
+#thesis-title {
+    display: flex;
+    justify-content: center;
+    padding: 2rem 0;
+    text-align: center;
+}
+
+/* Reusing events and events block formatting, simply defining color */
+#thesis-events > .events-block:first-of-type {
+    background-color: var(--bg-color-2);
+}
+
+.thesis-video {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.thesis-video .vid-container {
+    padding: 0 1.5rem 0;
+}
+
+.thesis-video .vid-container video {
+    max-width: 100%;
+    height: auto;
+}
+
+.thesis-text {
+    padding: 0 1.5rem;
+}
+
+.thesis-text h3 {
+    font-size: large;
+    padding-top: 1.5rem;
+}
+
+.thesis-text p {
+    font-size: small;
+    font-weight: lighter;
+    padding-top: 0.5rem;
+    padding-bottom: 1.5rem;
+}
+
+
+
+
+
+/** -------------------- Section: Footer -------------------- **/
 footer {
     display: flex; /* what is display: flex managing? is it manage itself */
     grid-column: full-start / full-end; /* this property grid-column is maanged by: .conatiner */
@@ -311,50 +397,41 @@ footer li {
     margin-right: 0.5rem;;
 }
 
-/* TODO setting the hover effects for terms and privacy */
-
-/* 
-footer ul li:last-child {
-    padding-right: 1.5rem;
+/* setting the hover effects for terms and privacy */
+footer li a {
+    transition-duration: var(--transition-speed);
+}
+footer li a:hover {
+    color: var(--secondary-link-color);
 }
 
-footer ul li a {
-    display: flex;
-    align-items: center;
-} */
-
-/* Set up logo styles */
-/* test: Martin's approach */
-/* footer a {
-  display: flex;
-  align-items: center;
-} */
 
 
 
 
+/** ***********************************************************************  **/
+/** ***********************************************************************  **/
+/** Start of Mobile Section **/
+/** ***********************************************************************  **/
+/** ***********************************************************************  **/
 
 
-
+/** ------ Deactivating Mobile Items in Web View ----- **/
 /* Hide nav mobile */
 #nav-mobile {
     display: none;
 }
-
 
 /* Hide events mobile */
 .events > .events-block > .events-img-mobile {
     display: none;
 }
 
-/** ***********************************************************************  **/
+.thesis-video-mobile {
+    display: none;
+}
+/** -------------------------------------------------- **/
 
-
-/* TODO */
-
-/** ***********************************************************************  **/
-/** Start of Mobile Section **/
-/** ***********************************************************************  **/
 
 /* if the width of screen is 640px and below (aka 40rem x 16px) */
 @media screen and (max-width: 40rem ) {
@@ -377,7 +454,7 @@ footer ul li a {
         align-items: center;
     }
 
-    /* Header area (hero section) */
+    /** ----- Events area (hero section) ----- **/
     header {
         display: grid;
         grid-column: full-start/full-end;
@@ -404,7 +481,7 @@ footer ul li a {
         font-weight: lighter;
     }
 
-    /* Events area */
+    /** ----- Events area ----- **/
     .events {
         display: grid;
         grid-column: full-start/full-end;
@@ -436,8 +513,54 @@ footer ul li a {
         padding-top: 1.5rem;
     }
 
+    
+    /** ----- Learning Section ----- **/
+    #learning .learning-cards-container .learning-card img,
+    #learning .learning-cards-container .learning-card h4,
+    #learning .learning-cards-container .learning-card p {
+        display: none;
+    }
 
-    /* Events area */
+    #learning {
+        background-color: var(--white);
+    }
+
+    #learning h1 {
+        display: block;
+        padding: 2rem 4rem 1rem;
+        display: flex;
+        justify-content: center;
+    }
+
+    #learning > .learning-cards-container {
+        display: flex;
+        flex-direction: column;
+        padding: 0 1rem 2rem;
+        gap: 0.5rem;
+    }
+
+    #learning .learning-cards-container .learning-card {
+        background-color: var(--bg-color-2);
+    }
+    #learning .learning-cards-container .learning-card h3 {
+        padding: 1rem 1rem 1.5rem;
+        align-items: center;
+    }
+
+
+    /** ----- Thesis Section ----- **/
+    .thesis-video ,
+    #thesis-events {
+        display: none;
+    }
+
+    .thesis-video-mobile {
+        display: flex;
+        padding-bottom: 1.5rem;
+    }
+
+
+    /** ----- Footer ----- **/
     footer {
         padding: 1rem 1rem;
         font-size: small;
@@ -446,5 +569,3 @@ footer ul li a {
 
 
 }
-
-/** ***********************************************************************  **/
