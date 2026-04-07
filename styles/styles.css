@@ -1,42 +1,344 @@
-/* TODO */
+
 
 /* Reset CSS */
 /* Universal selector (*) targets every element (regardless tag, class, ID) */
 
-/* TODO */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  outline: 1px dashed #ccc;
+}
 
+:root {
+    --white: #fff;
+    --main-font-color: #4a4a4a;
+    --main-link-color: #484848;
+    --secondary-link-color: #4a90e2;
+}
+
+
+
+html {
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: var(--white);
+    color: var(--main-font-color);
+}
+
+a {
+    text-decoration: none;
+    color: inherit; /* #000 might be a safer choice */
+}
+
+.container { /* Grid system to split our document into 2 columns and 6 rows */
+    display: grid;
+    grid-template-columns: [full-start] 0.6fr [center-end center-start] 0.4fr [full-end];
+    grid-template-rows: repeat(6,min-content); /* shrinks the element to the minimum content height */
+}
+
+
+
+/** ***********************************************************************  **/
+/** ***********************************************************************  **/
 /** Start of Desktop Section **/
-/** ************************ **/
+/** ***********************************************************************  **/
+/** ***********************************************************************  **/
 
 /* Set up the navbar for the desktop */
+nav {
+    display: flex; /* what is display: flex managing? is it manage itself */
+    grid-column: full-start / full-end; /* this property grid-column is maanged by: .conatiner */
+    justify-content: space-between; /* justyfy -content is used alongside display: flex */
+    height: 4rem;
+    background-color: var(--white);
+}
 
+nav ul {
+    display:flex;
+    list-style: none;
+}
+
+
+nav ul li {
+    align-content: center;
+    padding-right: 1rem;
+}
+
+nav ul li:last-child {
+    padding-right: 1.5rem;
+}
+
+nav ul li a {
+    display: flex;
+    align-items: center;
+}
 
 /* Set up logo styles */
+/* test: Martin's approach */
+nav a {
+  display: flex;
+  align-items: center;
+}
+
+/* nav a span{
+  text-decoration: none;
+  text-transform: uppercase;
+  align-content: center;
+} */
+
+/* test: approach 1 */
+/* nav a:first-child {
+    align-content: center;
+}
+
+nav img {
+    vertical-align: middle;
+    padding: 0.25rem;
+    height: 2rem;
+} */
+
+/* test: approach 2 */
+/* nav a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+} */
+
+.logo {
+    height: 2rem;
+    margin-left:1.5rem;
+}
+
+nav > a > span {
+    text-transform: uppercase;
+    line-height: 2rem;
+}
+
+
+/* !NOTE: the following will select nothing. do you know why? */
+/* nav > a > span:first-child {
+    font-weight: bold;
+    color: var(--main-link-color);
+} */
+
+nav > a > span:first-of-type {
+    font-weight: bold;
+    color: var(--main-link-color);
+}
+
+nav > a > span:last-of-type {
+    font-weight:lighter;
+    color: #aaa;
+    padding-left: 0.25rem
+}
 
 
 /* Set up navigation links' styles */
+/* TODO Create navigation link hover effects */
 
 
 /* Set up header area */
+header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #d8d8d8;
+}
 
+header > div {
+    display: flex;
+    flex-direction: column;
+    height: 18rem;
+    justify-content: space-evenly;
+    padding-right: 2rem;
+}
+
+.img-container {
+    padding: 2rem 1.5rem;
+}
+
+header > img {
+    max-width: 100%;
+    height: auto;       /* height taken in relation to the width with respect to orignal image sizing */
+}
+
+header:nth-of-type(2) > div > h1 {
+    font-size: xx-large;
+}
+
+header:nth-of-type(2) > div > h2 {
+    font-size: large;
+}
+
+header:nth-of-type(2) > div > a {
+    display: block;
+    font-size: large;
+    color: var(--white);
+    background-color: var(--main-font-color);
+    padding: 0.5rem 0;
+    text-align: center;
+    /* border: 0.125rem solid #000;
+    border-radius: 0.25rem; */
+}
 
 /* hover effect for call to action link */
+/* TODO Create hover effect for the cta button */
 
 
 /* Set up practice section */
+.practice {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.practice > .img-container > img {
+    max-width: 100%;
+    height: auto;       /* height taken in relation to the width with respect to orignal image sizing */
+}
+
+.practice-text {
+    padding: 0 1.5rem;
+}
+
+.practice > .practice-text > h1 {
+    font-size: xx-large;
+    padding-bottom: 1.5rem;
+}
+
+.practice > .practice-text > p {
+    font-size: small;
+    font-weight: lighter;
+}
+
+.practice > .practice-text > p > span {
+    display: block;
+    margin: 2rem 0;
+}
 
 
+
+/** ---------------------- **/
+/** Section: Events **/
+.events {
+    display: grid;
+    grid-template-rows: repeat(3, min-content);
+    border-left: 1px solid #e7e7e7;
+}
+
+.events .events-block {
+    display: grid;
+    grid-template-columns: 0.35fr  0.65fr; /* [full-start] 0.35fr [center-end center-start] 0.65fr [full-end]; */
+    align-items: center;
+    border-bottom: 1px solid #e7e7e7;
+    padding: 1rem 0rem 1rem 1rem;
+}
+
+.events img {
+    max-width:100%;
+    height:auto;
+}
+
+/* .events .events-text {
+    margin-left: 1rem;
+    height:100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 0.5rem;
+} */
+
+.events .events-text {
+    margin-left: 1rem;
+    height:100%;
+    align-content: center;
+}
+
+.events .events-text h3 {
+    font-size: large;
+}
+
+.events .events-text p {
+    font-size: small;
+    font-weight: lighter;
+    display: block;
+    padding-top: 0.5rem;
+}
+
+.events .events-text a {
+    font-size: small;
+    color:var(--secondary-link-color);  /* #3434c6 */
+    display: block;
+    padding-top: 0.5rem;
+}
+
+.events .events-block:last-child {
+    background-color: #d8d8d8;
+}
+
+
+
+/** ---------------------- **/
+/** Section: Laerning **/
+
+/** ---------------------- **/
+/** Section: Thesis **/
+
+/** ---------------------- **/
+/** Section: Footer **/
+footer {
+    display: flex; /* what is display: flex managing? is it manage itself */
+    grid-column: full-start / full-end; /* this property grid-column is maanged by: .conatiner */
+    justify-content: space-between; /* justyfy -content is used alongside display: flex */
+    background-color: var(--white);
+    padding: 1rem 1.5rem 5rem;
+    border: 1px solid #e7e7e7;
+    font-size: x-small;
+    color: var(--main-link-color);
+}
+
+footer ul {
+    display:flex;
+    list-style: none;
+}
+
+footer li {
+    margin-right: 0.5rem;;
+}
+
+/* TODO setting the hover effects for terms and privacy */
+
+/* 
+footer ul li:last-child {
+    padding-right: 1.5rem;
+}
+
+footer ul li a {
+    display: flex;
+    align-items: center;
+} */
+
+/* Set up logo styles */
+/* test: Martin's approach */
+/* footer a {
+  display: flex;
+  align-items: center;
+} */
 /* Hide events mobile */
 
 
-/** ********************** **/
-/** End of Desktop Section **/
+/** ***********************************************************************  **/
 
 
 /* TODO */
 
+/** ***********************************************************************  **/
 /** Start of Mobile Section **/
-/** *********************** **/
+/** ***********************************************************************  **/
 
 /* if the width of screen is 640px and below (aka 40rem x 16px) */
 @media screen and (max-width: 40rem ) {
@@ -44,5 +346,4 @@
 
 }
 
-/* *********************** */
-/** End of Mobile Section **/
+/** ***********************************************************************  **/
