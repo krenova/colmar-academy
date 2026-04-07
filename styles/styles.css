@@ -6,7 +6,7 @@
 *, *::before, *::after {
   margin: 0;
   padding: 0;
-  outline: 1px dashed #ccc;
+  outline: 1px dashed #000;
 }
 
 :root {
@@ -56,6 +56,7 @@ nav {
     height: 4rem;
     background-color: var(--white);
 }
+
 
 nav ul {
     display:flex;
@@ -328,8 +329,23 @@ footer ul li a {
   display: flex;
   align-items: center;
 } */
-/* Hide events mobile */
 
+
+
+
+
+
+
+/* Hide nav mobile */
+#nav-mobile {
+    display: none;
+}
+
+
+/* Hide events mobile */
+.events > .events-block > .events-img-mobile {
+    display: none;
+}
 
 /** ***********************************************************************  **/
 
@@ -342,7 +358,92 @@ footer ul li a {
 
 /* if the width of screen is 640px and below (aka 40rem x 16px) */
 @media screen and (max-width: 40rem ) {
+    nav , 
+    .practice, .events > .events-block > .events-img-desktop,
+    footer > ul {
+        display: none;
+    }
+
+    .events > .events-block > .events-img-mobile {
+        display: block;
+    }
+
+    #nav-mobile {
+        grid-column: full-start/full-end;
+        display: flex;
+        /* flex-direction: inline; */
+        height: 4rem;
+        justify-content: space-around; /* spaces evenly taking into account left and right */
+        align-items: center;
+    }
+
+    /* Header area (hero section) */
+    header {
+        display: grid;
+        grid-column: full-start/full-end;
+    }
+
+    .img-container {
+        padding: 0;
+    }
+
+    header:last-of-type > div {
+        display: block;
+        width: auto;
+        height: auto;
+        padding: 2rem 1rem;
+    }
+
+    header:last-of-type > div > h1 {
+        padding-bottom: 2rem;
+        font-weight: 900;
+    }
+
+    header:last-of-type > div > h2 {
+        padding-bottom: 1.5rem;
+        font-weight: lighter;
+    }
+
+    /* Events area */
+    .events {
+        display: grid;
+        grid-column: full-start/full-end;
+    }
+
+    .events > .events-block {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .events > .events-block:nth-child(2) {
+        padding-top: 3rem;
+    }
     
+    .events > .events-block:last-child {
+        padding-top: 3rem;
+        padding-bottom: 2rem;
+        background-color: var(--white);
+    }
+
+    .events > .events-block > .events-text {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        /* padding-left: 1rem; */
+    }
+
+    .events > .events-block > .events-text > h3{
+        padding-top: 1.5rem;
+    }
+
+
+    /* Events area */
+    footer {
+        padding: 1rem 1rem;
+        font-size: small;
+    }
+
+
 
 }
 
