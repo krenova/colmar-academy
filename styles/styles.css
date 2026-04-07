@@ -12,7 +12,7 @@
 *, *::before, *::after {
   margin: 0;
   padding: 0;
-  outline: 1px dashed #000;
+  /* outline: 1px dashed #000; */
 }
 
 :root {
